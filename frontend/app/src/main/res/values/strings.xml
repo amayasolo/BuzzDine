@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">BuzzDine</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="logo">logo</string>
+    <string name="sign_up">sign up</string>
+    <string name="buzzdine">BuzzDine</string>
+    <string name="login">Login</string>
 </resources>
