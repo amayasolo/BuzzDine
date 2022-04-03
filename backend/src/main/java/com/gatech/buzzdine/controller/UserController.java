@@ -22,11 +22,7 @@ public class UserController {
     public boolean register(@RequestParam String username, @RequestParam String email,
                               @RequestParam String password){
         try {
-            UserInfo userInfo = new UserInfo();
-            userInfo.setUsername(username);
-            userInfo.setEmail(email);
-            userInfo.setPassword(password);
-            return userService.register(userInfo);
+            return userService.register(username, email, password);
         }catch (Exception e){
             logger.error(e.getMessage());
             return false;
@@ -36,10 +32,17 @@ public class UserController {
     @GetMapping("/login")
     public boolean login(@RequestParam String username, @RequestParam String password){
         try {
-            UserInfo userInfo = new UserInfo();
-            userInfo.setUsername(username);
-            userInfo.setPassword(password);
-            return userService.login(userInfo);
+            return userService.login(username, password);
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return false;
+        }
+    }
+
+    @PostMapping("/addFriend")
+    public boolean addFriend(@RequestParam String myUsername, @RequestParam String otherUsername){
+        try {
+            return userService.addFriend(myUsername, otherUsername);
         }catch (Exception e){
             logger.error(e.getMessage());
             return false;

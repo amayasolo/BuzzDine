@@ -1,5 +1,6 @@
 package com.gatech.buzzdine.service;
 
+import com.gatech.buzzdine.entity.FilterEnum;
 import com.gatech.buzzdine.entity.RestaurantInfo;
 import com.gatech.buzzdine.storage.service.RestaurantInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class RestaurantService {
         return restaurantInfoService.list();
     }
 
-    public List<RestaurantInfo> getRecommend(String username, String longitude, String latitude){
+    public List<RestaurantInfo> getRecommend(String username, String longitude, String latitude, FilterEnum filterEnum){
         return restaurantInfoService.list();
     }
 }
