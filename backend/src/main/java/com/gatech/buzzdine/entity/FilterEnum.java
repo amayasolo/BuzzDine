@@ -1,7 +1,9 @@
 package com.gatech.buzzdine.entity;
 
 public enum FilterEnum {
-    PICKY("picky", 1), DISTANCE("distance", 2), INTEGRATE("integrate", 3);
+    DISTANCE("distance", 0), CONTENT_BASED("content-based", 1), COLLABORATIVE("collaborative", 2),
+    CONTENT_BASED_COLLABORATIVE("content-based collaborative", 3), DISTANCE_COLLABORATIVE("distance and collaborative", 4),
+    DISTANCE_CONTENT_BASED_COLLABORATIVE("combination of location, content-based and collaborative filtering", 5);
 
     private String type;
     private int index;
