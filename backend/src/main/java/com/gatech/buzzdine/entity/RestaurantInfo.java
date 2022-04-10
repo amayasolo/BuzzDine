@@ -10,4 +10,7 @@ public class RestaurantInfo {
     private String name;
     private long longitude;
     private long latitude;
+    // Cuisine Feature: American Barbecue Chinese French Hamburger Indian Italian Japanese Mexican Pizza Seafood Steak Sushi Thai}
+    //["American", "Chinese"]
+    private String features;
 }
