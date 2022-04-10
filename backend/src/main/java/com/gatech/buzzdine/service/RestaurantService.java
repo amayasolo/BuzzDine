@@ -76,6 +76,7 @@ public class RestaurantService {
         Map<RestaurantInfo, Double> scoreMap = new HashMap<>();
         Map<String, Integer> userPreferences = getUserPreferences(user);
         List<UserInfo> allUser = userInfoService.list();
+        Set<String> friends = new HashSet<>(getFriends(user));
         for(UserInfo other : allUser){
             if(other == user) continue;
             Map<String, Integer> otherPreferences = getUserPreferences(user);
@@ -84,6 +85,7 @@ public class RestaurantService {
                 similarity += Math.abs(userPreferences.get(p) - otherPreferences.get(p)) <= 1 ? 1 : 0;
             }
             List<RestaurantInfo> favorites = getFavorite(other, restaurantInfoList);
+            if(friends.contains(user.getUsername())) similarity *= 2;
             for(RestaurantInfo f : favorites){
                 scoreMap.put(f, scoreMap.getOrDefault(f, 0d) + similarity);
             }
@@ -91,6 +93,10 @@ public class RestaurantService {
         List<RestaurantInfo> res = new ArrayList<>(scoreMap.keySet());
         Collections.sort(res,(a, b)->(scoreMap.get(a) > scoreMap.get(b) ? 1: -1) );
         return res;
+    }
+
+    private List<String> getFriends(UserInfo user) {
+        return JSONArray.parseArray(user.getFriends(), String.class);
     }
 
     private List<RestaurantInfo> getFavorite(UserInfo user, List<RestaurantInfo> restaurantInfoLis) {
