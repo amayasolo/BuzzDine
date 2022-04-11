@@ -46,14 +46,14 @@ public class RestaurantService {
                 contentBasedRes = getContentBasedRes(user, restaurantInfoList);
                 distanceBasedRes = getDistanceBasedRes(restaurantInfoList, longitude, latitude);
                 Collections.copy(res, distanceBasedRes);
-                Collections.sort(res, (a, b)->(distanceBasedRes.indexOf(a) + contentBasedRes.indexOf(a) - distanceBasedRes.indexOf(b) + contentBasedRes.indexOf(b)));
+                Collections.sort(res, (a, b)->(distanceBasedRes.indexOf(a) + contentBasedRes.indexOf(a) - distanceBasedRes.indexOf(b) - contentBasedRes.indexOf(b)));
                 return res;
 
             case DISTANCE_COLLABORATIVE:
                 collaborateRes = getCollaborateRes(user, restaurantInfoList);
                 distanceBasedRes = getDistanceBasedRes(restaurantInfoList, longitude, latitude);
                 Collections.copy(res, distanceBasedRes);
-                Collections.sort(res, (a, b)->(distanceBasedRes.indexOf(a) + collaborateRes.indexOf(a) - distanceBasedRes.indexOf(b) + collaborateRes.indexOf(b)));
+                Collections.sort(res, (a, b)->(distanceBasedRes.indexOf(a) + collaborateRes.indexOf(a) - distanceBasedRes.indexOf(b) - collaborateRes.indexOf(b)));
                 return res;
 
             case DISTANCE_CONTENT_BASED_COLLABORATIVE:
@@ -61,7 +61,7 @@ public class RestaurantService {
                 collaborateRes = getCollaborateRes(user, restaurantInfoList);
                 distanceBasedRes = getDistanceBasedRes(restaurantInfoList, longitude, latitude);
                 Collections.copy(res, distanceBasedRes);
-                Collections.sort(res, (a, b)->(distanceBasedRes.indexOf(a) + contentBasedRes.indexOf(a) + collaborateRes.indexOf(a) - distanceBasedRes.indexOf(b) + contentBasedRes.indexOf(b) + collaborateRes.indexOf(b)));
+                Collections.sort(res, (a, b)->(distanceBasedRes.indexOf(a) + contentBasedRes.indexOf(a) + collaborateRes.indexOf(a) - distanceBasedRes.indexOf(b) - contentBasedRes.indexOf(b) - collaborateRes.indexOf(b)));
                 return res;
         }
         return restaurantInfoService.list();
