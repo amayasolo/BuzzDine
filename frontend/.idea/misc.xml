@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/divya/Documents/CS 4675InternetSysServices/project/BuzzDine/frontend/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1735" />
+        <entry key="..\:/Users/divya/Documents/CS 4675InternetSysServices/project/BuzzDine/frontend/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1735" />
+        <entry key="..\:/Users/divya/Documents/CS 4675InternetSysServices/project/BuzzDine/frontend/app/src/main/res/layout/activity_main.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/divya/Documents/CS 4675InternetSysServices/project/BuzzDine/frontend/app/src/main/res/layout/activity_signup.xml" value="0.17831813576494426" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20062408447265628" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.182518115942029" />
