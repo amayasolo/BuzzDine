@@ -41,8 +41,8 @@
         android:text="SIGN UP"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="48sp"
-        tools:layout_editor_absoluteX="120dp"
-        tools:layout_editor_absoluteY="266dp" />
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="273dp" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
@@ -76,6 +76,12 @@
         android:textColor="#B3A36B"
         tools:layout_editor_absoluteX="66dp"
         tools:layout_editor_absoluteY="476dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
