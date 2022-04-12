@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/signup3"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="624dp"
+        android:backgroundTint="#B3A36B"
+        android:text="save"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="120dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="82dp"
+        android:layout_height="38dp"
+        android:text="Back" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editText5"

@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <Button
+        android:id="@+id/login_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="94dp"
@@ -14,13 +23,13 @@
         android:contentDescription="@string/logo"
         android:src="@drawable/plate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/login_back" />
 
     <TextView
         android:id="@+id/login_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
+        android:layout_marginStart="132dp"
         android:background="#FFFFFF"
         android:text="@string/login"
         android:textColor="#B3A36B"
