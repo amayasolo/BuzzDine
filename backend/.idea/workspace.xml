@@ -10,7 +10,6 @@
       <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_rate.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_settings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_top5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" beforeDir="false" />
@@ -169,7 +168,7 @@
       <workItem from="1649535376567" duration="1190000" />
       <workItem from="1649625991439" duration="3341000" />
       <workItem from="1649717693759" duration="876000" />
-      <workItem from="1649728863583" duration="654000" />
+      <workItem from="1649728863583" duration="1509000" />
     </task>
     <servers />
   </component>

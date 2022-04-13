@@ -31,6 +31,7 @@ public class SignUp extends AppCompatActivity {
         username = findViewById(R.id.signup_username);
         email = findViewById(R.id.signup_email);
         password = findViewById(R.id.signup_password);
+        Button back_btn = findViewById(R.id.signup_back);
         signup_btn.setOnClickListener(v -> {
             OkHttpClient client = new OkHttpClient();
             HttpUrl loginUrl = new HttpUrl.Builder()
@@ -49,6 +50,10 @@ public class SignUp extends AppCompatActivity {
                 e.printStackTrace();
             }
             Intent intent = new Intent(this, SignUp.class);
+            startActivity(intent);
+        });
+        back_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
     }

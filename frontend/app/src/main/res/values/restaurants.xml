@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="restaurants">
+        <item>West Village Dining</item>
+        <item>Cluck &amp; Moo</item>
+        <item>Wreck Stop</item>
+        <item>Slutty Vegan Truck</item>
+        <item>Mac Shack</item>
+    </string-array>
+    <string-array name="cuisines">
+        <item>American</item>
+        <item>Japanese</item>
+        <item>Chinese</item>
+        <item>Korean</item>
+    </string-array>
+</resources>

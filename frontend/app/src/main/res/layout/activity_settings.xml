@@ -6,157 +6,199 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/signup3"
+        android:id="@+id/setting_back"
+        android:layout_width="82dp"
+        android:layout_height="38dp"
+        android:text="@string/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/setting_word"
+        android:layout_width="175dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/setting"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/setting_pickiness_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="4dp"
+        android:text="RATE YOUR LEVEL OF FOOD PICKINESS"
+        android:textColor="#0C0C0C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_word" />
+
+    <RatingBar
+        android:id="@+id/setting_pickiness"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:numStars="5"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_pickiness_word" />
+
+    <TextView
+        android:id="@+id/setting_physical_word"
+        android:layout_width="235dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="8dp"
+        android:text="RATE YOUR LEVEL OF DAILY PHYSICAL ACTIVITY"
+        android:textAlignment="center"
+        android:textColor="#0C0C0C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_pickiness" />
+
+    <RatingBar
+        android:id="@+id/setting_physical"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:numStars="5"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_physical_word" />
+
+    <TextView
+        android:id="@+id/setting_place_word"
+        android:layout_width="241dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="8dp"
+        android:text="SELECT YOUR FAVORITE ON-CAMPUS DINING PLACE"
+        android:textAlignment="center"
+        android:textColor="#0C0C0C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_physical" />
+
+    <Spinner
+        android:id="@+id/setting_place"
+        android:layout_width="228dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="112dp"
+        android:entries="@array/restaurants"
+        android:spinnerMode="dialog"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_place_word" />
+
+    <TextView
+        android:id="@+id/setting_least_place_word"
+        android:layout_width="217dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="8dp"
+        android:text="SELECT YOUR LEAST FAVORITE ON-CAMPUS DINING PLACE"
+        android:textAlignment="center"
+        android:textColor="#0C0C0C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_place" />
+
+    <Spinner
+        android:id="@+id/setting_least_place"
+        android:layout_width="228dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="112dp"
+        android:entries="@array/restaurants"
+        android:spinnerMode="dialog"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_least_place_word" />
+
+    <TextView
+        android:id="@+id/setting_cuisine_word"
+        android:layout_width="253dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="8dp"
+        android:text="SELECT YOUR FAVORITE CUISINE"
+        android:textAlignment="center"
+        android:textColor="#0C0C0C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_least_place" />
+
+    <Spinner
+        android:id="@+id/setting_cuisine"
+        android:layout_width="228dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="112dp"
+        android:entries="@array/cuisines"
+        android:spinnerMode="dialog"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_cuisine_word" />
+
+    <TextView
+        android:id="@+id/setting_least_cuisine_word"
+        android:layout_width="302dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="8dp"
+        android:text="SELECT YOUR LEAST FAVORITE CUISINE"
+        android:textAlignment="center"
+        android:textColor="#0C0C0C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_cuisine" />
+
+    <Spinner
+        android:id="@+id/setting_least_cuisine"
+        android:layout_width="228dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="112dp"
+        android:entries="@array/cuisines"
+        android:spinnerMode="dialog"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_least_cuisine_word" />
+
+    <TextView
+        android:id="@+id/setting_friend_word"
+        android:layout_width="147dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="4dp"
+        android:text="ADD YOUR FRIENDS"
+        android:textAlignment="center"
+        android:textColor="#0C0C0C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_least_cuisine" />
+
+    <EditText
+        android:id="@+id/setting_friend"
+        android:layout_width="298dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="56dp"
+        android:background="@drawable/rectangle"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_friend_word" />
+
+    <Button
+        android:id="@+id/setting_save"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="624dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#B3A36B"
         android:text="save"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="120dp" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="82dp"
-        android:layout_height="38dp"
-        android:text="Back" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editText5"
-        android:layout_width="344dp"
-        android:layout_height="36dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="492dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editText4"
-        android:layout_width="344dp"
-        android:layout_height="36dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="421dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="177dp"
-        android:layout_height="68dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="SETTINGS"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="34sp"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="2dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RATE YOUR LEVEL OF FOOD PICKINESS"
-        android:textColor="#0C0C0C"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="82dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="307dp"
-        android:layout_height="49dp"
-        android:text="RATE YOUR LEVEL OF DAILY PHYSICAL ACTIVITY"
-        android:textAlignment="center"
-        android:textColor="#0C0C0C"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="154dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="307dp"
-        android:layout_height="49dp"
-        android:text="SELECT YOUR FAVORITE ON-CAMPUS DINING PLACE"
-        android:textAlignment="center"
-        android:textColor="#0C0C0C"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="245dp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="307dp"
-        android:layout_height="49dp"
-        android:text="SELECT YOUR LEAST FAVORITE ON-CAMPUS DINING PLACE"
-        android:textAlignment="center"
-        android:textColor="#0C0C0C"
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="330dp" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="300dp"
-        android:layout_height="20dp"
-        android:text="SELECT YOUR FAVORITE CUISINE"
-        android:textAlignment="center"
-        android:textColor="#0C0C0C"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="414dp" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="302dp"
-        android:layout_height="24dp"
-        android:text="SELECT YOUR LEAST FAVORITE CUISINE"
-        android:textAlignment="center"
-        android:textColor="#0C0C0C"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="481dp" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="302dp"
-        android:layout_height="24dp"
-        android:text="ADD YOUR FRIENDS"
-        android:textAlignment="center"
-        android:textColor="#0C0C0C"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="555dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="344dp"
-        android:layout_height="36dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="101dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editText6"
-        android:layout_width="344dp"
-        android:layout_height="36dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="569dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editText"
-        android:layout_width="344dp"
-        android:layout_height="36dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="189dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editText2"
-        android:layout_width="344dp"
-        android:layout_height="36dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="270dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editText3"
-        android:layout_width="344dp"
-        android:layout_height="36dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="357dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_friend" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
