@@ -17,59 +17,14 @@
         android:id="@+id/setting_word"
         android:layout_width="175dp"
         android:layout_height="46dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="116dp"
         android:text="@string/setting"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/setting_pickiness_word"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="4dp"
-        android:text="RATE YOUR LEVEL OF FOOD PICKINESS"
-        android:textColor="#0C0C0C"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_word" />
-
-    <RatingBar
-        android:id="@+id/setting_pickiness"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:numStars="5"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_pickiness_word" />
-
-    <TextView
-        android:id="@+id/setting_physical_word"
-        android:layout_width="235dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="8dp"
-        android:text="RATE YOUR LEVEL OF DAILY PHYSICAL ACTIVITY"
-        android:textAlignment="center"
-        android:textColor="#0C0C0C"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_pickiness" />
-
-    <RatingBar
-        android:id="@+id/setting_physical"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:numStars="5"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_physical_word" />
 
     <TextView
         android:id="@+id/setting_place_word"
@@ -81,7 +36,7 @@
         android:textAlignment="center"
         android:textColor="#0C0C0C"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_physical" />
+        app:layout_constraintTop_toBottomOf="@+id/setting_word" />
 
     <Spinner
         android:id="@+id/setting_place"
@@ -195,7 +150,7 @@
         android:layout_marginStart="120dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="#B3A36B"
-        android:text="save"
+        android:text="@string/save"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"

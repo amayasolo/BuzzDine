@@ -146,4 +146,9 @@ public class RestaurantService {
         double dis2 = Double.valueOf(re.getLongitude()) - Double.valueOf(lo);
         return dis1 * dis1 + dis2 * dis2;
     }
+
+    public boolean updateRating(String username, String restaurantName, int rating){
+        //TODO
+        return true;
+    }
 }

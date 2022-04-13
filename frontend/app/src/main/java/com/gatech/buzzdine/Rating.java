@@ -20,34 +20,27 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class Setting extends AppCompatActivity {
+public class Rating extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_rate);
 
-        Spinner place = findViewById(R.id.setting_place);
-        Spinner least_place = findViewById(R.id.setting_least_place);
-        Spinner cuisine = findViewById(R.id.setting_cuisine);
-        Spinner least_cuisine = findViewById(R.id.setting_least_cuisine);
-        EditText friends = findViewById(R.id.setting_friend);
-        Button save_btn = findViewById(R.id.setting_save);
-        Button back_btn = findViewById(R.id.setting_back);
-
-        //TODO get data
+        RatingBar rating = findViewById(R.id.rating_bar);
+        Button save_btn = findViewById(R.id.rate_save);
+        Button back_btn = findViewById(R.id.rate_back);
 
         save_btn.setOnClickListener(v -> {
             User currentUser = Login.getCurrentUser();
             OkHttpClient client = new OkHttpClient();
-            RequestBody requestBodyPost = new FormBody.Builder()
-                    .add("username", currentUser.getUsername())
-                    .add("favourite_dining_place", String.valueOf(place))
-                    .add("least_favourite_dining_place", String.valueOf(least_place))
-                    .add("favourite_cuisine", String.valueOf(cuisine))
-                    .add("least_favourite_cuisine", String.valueOf(least_cuisine))
-                    .add("friends", String.valueOf(friends))
+            HttpUrl loginUrl = new HttpUrl.Builder()
+                    .scheme("http")
+                    .host("172.26.32.1:8001/restaurant/updateRating")
+                    .addQueryParameter("username", currentUser.getUsername())
+                    .addQueryParameter("restaurantName", getIntent().getStringExtra("restaurant"))
+                    .addQueryParameter("rating", String.valueOf(Math.round(Float.parseFloat(String.valueOf(rating)))))
                     .build();
-            Request request = new Request.Builder().url("http://172.26.32.1:8001/user/updateSetting").post(requestBodyPost).build();
+            Request request = new Request.Builder().url(loginUrl).build();
             try {
                 Response response = client.newCall(request).execute();
                 String result = Objects.requireNonNull(response.body()).string();

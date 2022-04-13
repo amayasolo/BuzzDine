@@ -6,35 +6,12 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/signup5"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="576dp"
-        android:backgroundTint="#B3A36B"
-        android:text="save"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="120dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="317dp"
-        android:layout_height="49dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="RATE THE DINING OPTIONS"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="228dp" />
-
-    <Button
-        android:id="@+id/button4"
+        android:id="@+id/rate_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back" />
+        android:text="@string/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/imageView2"
@@ -45,41 +22,42 @@
         android:contentDescription="@string/logo"
         android:src="@drawable/plate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/rate_back" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="329dp"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="340dp" />
 
-    <Spinner
-        android:id="@+id/spinner6"
-        android:layout_width="329dp"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="370dp" />
+    <TextView
+        android:id="@+id/rate_word"
+        android:layout_width="317dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="44dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="RATE THE DINING OPTIONS"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <Spinner
-        android:id="@+id/spinner7"
-        android:layout_width="329dp"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="400dp" />
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rate_word" />
 
-    <Spinner
-        android:id="@+id/spinner8"
-        android:layout_width="329dp"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="430dp" />
-
-    <Spinner
-        android:id="@+id/spinner9"
-        android:layout_width="329dp"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="460dp" />
-
+    <Button
+        android:id="@+id/rate_save"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#B3A36B"
+        android:text="@string/save"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rating_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

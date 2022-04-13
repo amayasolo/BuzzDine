@@ -19,7 +19,7 @@ public enum FilterEnum {
                 return filterEnum;
             }
         }
-        return null;
+        return DISTANCE;
     }
 
     public String getType() {

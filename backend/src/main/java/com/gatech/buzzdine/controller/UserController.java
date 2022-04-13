@@ -1,5 +1,6 @@
 package com.gatech.buzzdine.controller;
 
+import com.gatech.buzzdine.entity.Setting;
 import com.gatech.buzzdine.entity.UserInfo;
 import com.gatech.buzzdine.service.UserService;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -39,13 +40,24 @@ public class UserController {
         }
     }
 
-    @PostMapping("/addFriend")
-    public boolean addFriend(@RequestParam String myUsername, @RequestParam String otherUsername){
+    @PostMapping("/updateSetting")
+    public boolean updateSetting(@RequestBody Setting setting){
         try {
-            return userService.addFriend(myUsername, otherUsername);
+            return userService.updateSetting(setting);
         }catch (Exception e){
             logger.error(e.getMessage());
             return false;
+        }
+    }
+
+    @GetMapping("/getSetting")
+    @ResponseBody
+    public Setting getSetting(@RequestParam String username){
+        try {
+            return userService.getSetting(username);
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return new Setting();
         }
     }
 }

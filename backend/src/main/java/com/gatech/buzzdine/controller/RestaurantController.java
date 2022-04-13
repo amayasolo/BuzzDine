@@ -42,4 +42,15 @@ public class RestaurantController {
             return new ArrayList<>();
         }
     }
+
+    @PostMapping("/updateRating")
+    @ResponseBody
+    public boolean updateRating(@RequestParam String username, @RequestParam String restaurantName, @RequestParam Integer rating){
+        try {
+            return restaurantService.updateRating(username, restaurantName, rating);
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return false;
+        }
+    }
 }

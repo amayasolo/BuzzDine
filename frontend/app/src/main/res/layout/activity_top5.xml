@@ -5,18 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName8"
-        android:layout_width="403dp"
-        android:layout_height="80dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="TOP 5 DINING RECOMMENDATIONS"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="234dp" />
+    <Button
+        android:id="@+id/top5_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/imageView5"
@@ -29,49 +24,78 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="343dp" />
+    <TextView
+        android:id="@+id/editTextTextPersonName8"
+        android:layout_width="232dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="4dp"
+        android:singleLine="false"
+        android:text="TOP 5 \nDINING \nRECOMMENDATIONS"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
-    <EditText
-        android:id="@+id/editTextNumber2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="523dp" />
+    <Button
+        android:id="@+id/top1_btn"
+        android:layout_width="240dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#CAC0C0"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
 
-    <EditText
-        android:id="@+id/editTextNumber3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="478dp" />
+    <Button
+        android:id="@+id/top2_btn"
+        android:layout_width="240dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#CAC0C0"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top1_btn" />
 
-    <EditText
-        android:id="@+id/editTextNumber4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="433dp" />
+    <Button
+        android:id="@+id/top3_btn"
+        android:layout_width="240dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#CAC0C0"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top2_btn" />
 
-    <EditText
-        android:id="@+id/editTextNumber5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="388dp" />
+    <Button
+        android:id="@+id/top4_btn"
+        android:layout_width="240dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#CAC0C0"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top3_btn" />
+
+    <Button
+        android:id="@+id/top5_btn"
+        android:layout_width="240dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#CAC0C0"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top4_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

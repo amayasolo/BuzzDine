@@ -9,6 +9,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="setting">SETTINGS</string>
+    <string name="save">SAVE</string>
     <string name="TextInputLayout">TextInputLayout</string>
     <string name="firstname">FirstName</string>
     <string name="lastname">LastName</string>
