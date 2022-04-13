@@ -5,6 +5,7 @@ create table restaurant
     name      varchar(100) not null,
     longitude bigint       not null,
     latitude  bigint       not null,
+    features  varchar(500) null,
     constraint restaurant_id_uindex
         unique (id)
 );
@@ -19,6 +20,7 @@ create table user
     user_vector varchar(255) null,
     user_rating varchar(255) null,
     friends     varchar(500) null,
+    preferences varchar(500) null,
     constraint user_userId_uindex
         unique (id)
 );
