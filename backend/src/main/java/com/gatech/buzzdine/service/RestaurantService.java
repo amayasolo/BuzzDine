@@ -7,6 +7,7 @@ import com.gatech.buzzdine.entity.RestaurantInfo;
 import com.gatech.buzzdine.entity.UserInfo;
 import com.gatech.buzzdine.storage.service.RestaurantInfoService;
 import com.gatech.buzzdine.storage.service.UserInfoService;
+import com.gatech.buzzdine.utils.BuzzUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,8 @@ public class RestaurantService {
     private RestaurantInfoService restaurantInfoService;
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private UserService userService;
 
     public List<RestaurantInfo> getAll(){
         return restaurantInfoService.list();
@@ -74,12 +77,12 @@ public class RestaurantService {
 
     private List<RestaurantInfo>  getCollaborateRes(UserInfo user, List<RestaurantInfo> restaurantInfoList) {
         Map<RestaurantInfo, Double> scoreMap = new HashMap<>();
-        Map<String, Integer> userPreferences = getUserPreferences(user);
+        Map<String, Integer> userPreferences = userService.getUserPreferences(user);
         List<UserInfo> allUser = userInfoService.list();
         Set<String> friends = new HashSet<>(getFriends(user));
         for(UserInfo other : allUser){
             if(other == user) continue;
-            Map<String, Integer> otherPreferences = getUserPreferences(user);
+            Map<String, Integer> otherPreferences = userService.getUserPreferences(user);
             int similarity = 0;
             for(String p : userPreferences.keySet()){
                 similarity += Math.abs(userPreferences.get(p) - otherPreferences.get(p)) <= 1 ? 1 : 0;
@@ -101,7 +104,7 @@ public class RestaurantService {
 
     private List<RestaurantInfo> getFavorite(UserInfo user, List<RestaurantInfo> restaurantInfoLis) {
         List<RestaurantInfo> res = new ArrayList<>();
-        Map<String, Integer> ratings = getUserRating(user);
+        Map<String, Integer> ratings = userService.getUserRating(user);
         int max = Integer.MIN_VALUE;
         for(String r : ratings.keySet()){
             max = Math.max(max, ratings.get(r));
@@ -114,8 +117,8 @@ public class RestaurantService {
 
     private List<RestaurantInfo> getContentBasedRes(UserInfo user, List<RestaurantInfo> restaurantInfoList) {
         Map<RestaurantInfo, Double> scoreMap = new HashMap<>();
-        Map<String, Integer> userRating = getUserRating(user);
-        Map<String, Integer> userPreferences = getUserPreferences(user);
+        Map<String, Integer> userRating = userService.getUserRating(user);
+        Map<String, Integer> userPreferences = userService.getUserPreferences(user);
         for(RestaurantInfo restaurant : restaurantInfoList){
             Set<String> features = new HashSet<>(JSONArray.parseArray(restaurant.getFeatures(), String.class));
             Double tmp = 0d;
@@ -131,16 +134,6 @@ public class RestaurantService {
         return res;
     }
 
-    private Map<String, Integer> getUserPreferences(UserInfo user) {
-        String str = user.getPreferences();
-        return (HashMap<String, Integer>) Arrays.asList(str.split(",")).stream().map(s -> s.split(":")).collect(Collectors.toMap(e -> e[0], e -> Integer.parseInt(e[1])));
-    }
-
-    private Map<String, Integer> getUserRating(UserInfo user) {
-        String str = user.getUserRating();
-        return (HashMap<String, Integer>) Arrays.asList(str.split(",")).stream().map(s -> s.split(":")).collect(Collectors.toMap(e -> e[0], e -> Integer.parseInt(e[1])));
-    }
-
     private double getDistance(RestaurantInfo re, String lo, String la){
         double dis1 = Double.valueOf(re.getLatitude()) - Double.valueOf(la);
         double dis2 = Double.valueOf(re.getLongitude()) - Double.valueOf(lo);
@@ -148,7 +141,10 @@ public class RestaurantService {
     }
 
     public boolean updateRating(String username, String restaurantName, int rating){
-        //TODO
-        return true;
+        UserInfo dbUserInfo = userInfoService.getOne(new QueryWrapper<UserInfo>().eq("username", username));
+        Map<String, Integer> ratings = userService.getUserRating(dbUserInfo);
+        ratings.put(restaurantName, rating);
+        dbUserInfo.setUserRating(BuzzUtils.mapToString(ratings));
+        return userInfoService.save(dbUserInfo);
     }
 }
