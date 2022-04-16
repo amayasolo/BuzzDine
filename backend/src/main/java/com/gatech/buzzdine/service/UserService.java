@@ -6,11 +6,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gatech.buzzdine.entity.Setting;
 import com.gatech.buzzdine.entity.UserInfo;
 import com.gatech.buzzdine.storage.service.UserInfoService;
+import com.gatech.buzzdine.utils.BuzzUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -24,7 +25,6 @@ public class UserService {
         userInfo.setEmail(email);
         userInfo.setPassword(password);
         userInfo.setFriends("[]");
-        //TODO 初始值
         return userInfoService.save(userInfo);
     }
 
@@ -38,24 +38,53 @@ public class UserService {
 
     public Setting getSetting(String username){
         UserInfo dbUserInfo = userInfoService.getOne(new QueryWrapper<UserInfo>().eq("username", username));
-        //TODO
-        return new Setting();
+        Map<String, Integer> userRating = getUserRating(dbUserInfo);
+        Map<String, Integer> userPreferences = getUserPreferences(dbUserInfo);
+        List<String> ratings = new ArrayList<>(userRating.keySet());
+        Collections.sort(ratings, (a, b)->(userRating.get(b) - userRating.get(a)));
+        List<String> preferences = new ArrayList<>(userPreferences.keySet());
+        Collections.sort(preferences, (a, b)->(userPreferences.get(b) - userPreferences.get(a)));
+        Setting res = new Setting();
+        res.setUsername(dbUserInfo.getUsername());
+        res.setFavourite_dining_place(ratings.get(0));
+        res.setLeast_favourite_cuisine(ratings.get(ratings.size() - 1));
+        res.setFavourite_cuisine(preferences.get(0));
+        res.setLeast_favourite_cuisine(preferences.get(preferences.size() - 1));
+        res.setFriends(dbUserInfo.getFriends());
+        return res;
     }
 
-    //TODO
     public boolean updateSetting(Setting setting){
         UserInfo dbUserInfo = userInfoService.getOne(new QueryWrapper<UserInfo>().eq("username", setting.getUsername()));
-//        UserInfo otherDbUserInfo = userInfoService.getOne(new QueryWrapper<UserInfo>().eq("username", otherUsername));
-//        List<String> friendList = JSONArray.parseArray(dbUserInfo.getFriends(), String.class);
-//        List<String> otherFriendList = JSONArray.parseArray(otherDbUserInfo.getFriends(), String.class);
-//        friendList.add(otherUsername);
-//        otherFriendList.add(myUsername);
-//        dbUserInfo.setFriends(JSONArray.toJSONString(friendList));
-//        otherDbUserInfo.setFriends(JSONArray.toJSONString(otherFriendList));
-//        List<UserInfo> saveList = new ArrayList<>();
-//        saveList.add(dbUserInfo);
-//        saveList.add(otherDbUserInfo);
-//        return userInfoService.saveOrUpdateBatch(saveList);
-        return true;
+        dbUserInfo.setFriends(setting.getFriends());
+        dbUserInfo.setUserRating(updateRating(dbUserInfo, setting.getFavourite_dining_place(), setting.getLeast_favourite_dining_place()));
+        dbUserInfo.setPreferences(updatePreference(dbUserInfo, setting.getFavourite_cuisine(), setting.getLeast_favourite_cuisine()));
+        return userInfoService.save(dbUserInfo);
+    }
+
+    private String updatePreference(UserInfo dbUserInfo, String favourite_cuisine, String least_favourite_cuisine) {
+        Map<String, Integer> userPreferences = getUserPreferences(dbUserInfo);
+        int max = BuzzUtils.getMapMaxValue(userPreferences);
+        int min = BuzzUtils.getMapMinValue(userPreferences);
+        userPreferences.put(favourite_cuisine, Math.min(max + 1, 10));
+        userPreferences.put(least_favourite_cuisine, Math.max(min - 1, -10));
+        return BuzzUtils.mapToString(userPreferences);
+    }
+
+    private String updateRating(UserInfo dbUserInfo, String favourite_dining_place, String least_favourite_dining_place) {
+        Map<String, Integer> userRating = getUserRating(dbUserInfo);
+        int max = BuzzUtils.getMapMaxValue(userRating);
+        int min = BuzzUtils.getMapMinValue(userRating);
+        userRating.put(favourite_dining_place, Math.min(max + 1, 10));
+        userRating.put(least_favourite_dining_place, Math.max(min - 1, -10));
+        return BuzzUtils.mapToString(userRating);
+    }
+
+    public Map<String, Integer> getUserPreferences(UserInfo user) {
+        return BuzzUtils.stringToMap(user.getPreferences());
+    }
+
+    public Map<String, Integer> getUserRating(UserInfo user) {
+        return BuzzUtils.stringToMap(user.getUserRating());
     }
 }
