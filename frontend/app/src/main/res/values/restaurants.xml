@@ -1,26 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="restaurants">
-        <item>West Village Dining</item>
-        <item>Cluck &amp; Moo</item>
-        <item>Wreck Stop</item>
-        <item>Slutty Vegan Truck</item>
-        <item>Mac Shack</item>
+        <item>Cypress Street Pint &amp; Plate</item>
+        <item>Tindrum</item>
+        <item>Atwoods</item>
+        <item>Moes</item>
+        <item>Gyro bros</item>
+        <item>Waffle house</item>
+        <item>Ummas</item>
+        <item>Starbucks</item>
+        <item>Rising Roll</item>
+        <item>Herban Fix</item>
+        <item>Poor Calvins</item>
+        <item>Ecco Midtown</item>
+        <item>Twisted Taco</item>
+        <item>The Varsity</item>
+        <item>Rowdy Tiger Whiskey Bar &amp; Kitchen</item>
+        <item>Dos Amigos</item>
+        <item>Sublime Doughnut</item>
+        <item>Lucky Buddha</item>
+        <item>Anticos</item>
+        <item>Cafe intermezzo</item>
+        <item>Nova Sushi</item>
+        <item>Kaldis Coffee</item>
+        <item>Pho King</item>
+        <item>La Fonda</item>
+        <item>Chick-fil-a</item>
+        <item>McDonalds</item>
+        <item>Cook Out</item>
+        <item>Krystal</item>
     </string-array>
     <string-array name="cuisines">
         <item>American</item>
-        <item>Barbecue</item>
-        <item>Chinese</item>
-        <item>French</item>
-        <item>Hamburger</item>
-        <item>Indian</item>
+        <item>Asian</item>
+        <item>European</item>
         <item>Italian</item>
-        <item>Japanese</item>
+        <item>Mediterranean</item>
         <item>Mexican</item>
-        <item>Pizza</item>
-        <item>Seafood</item>
-        <item>Steak</item>
-        <item>Sushi</item>
-        <item>Thai</item>
+    </string-array>
+    <string-array name="filter">
+        <item>Distance</item>
+        <item>Content</item>
+        <item>Friends</item>
+        <item>Distance and Content</item>
+        <item>Distance and Friends</item>
+        <item>Distance and Content and Friends</item>
     </string-array>
 </resources>

@@ -2,6 +2,7 @@ package com.gatech.buzzdine;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -29,27 +30,24 @@ public class SignUp extends AppCompatActivity {
 
         Button signup_btn = findViewById(R.id.signup_btn);
         username = findViewById(R.id.signup_username);
+        System.out.println(username);
         email = findViewById(R.id.signup_email);
         password = findViewById(R.id.signup_password);
         Button back_btn = findViewById(R.id.signup_back);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         signup_btn.setOnClickListener(v -> {
-            OkHttpClient client = new OkHttpClient();
-            HttpUrl loginUrl = new HttpUrl.Builder()
-                    .scheme("http")
-                    .host("172.26.32.1:8001/user/register")
-                    .addQueryParameter("username", String.valueOf(username))
-                    .addQueryParameter("email", String.valueOf(email))
-                    .addQueryParameter("password", String.valueOf(password))
-                    .build();
-            Request request = new Request.Builder().url(loginUrl).post(RequestBody.create("", MediaType.get("application/json; charset=utf-8"))).build();
             try {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url("http://"+getResources().getString(R.string.ip)+":8001/user/register?username="+username.getText().toString()+"&email="+email.getText().toString()+"&password="+password.getText().toString()).post(RequestBody.create("", MediaType.get("application/json; charset=utf-8"))).build();
+
                 Response response = client.newCall(request).execute();
                 String result = Objects.requireNonNull(response.body()).string();
-                System.out.println(result);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Intent intent = new Intent(this, SignUp.class);
+            Intent intent = new Intent(this, Login.class);
             startActivity(intent);
         });
         back_btn.setOnClickListener(v -> {

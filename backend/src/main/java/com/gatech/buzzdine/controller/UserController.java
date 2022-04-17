@@ -41,8 +41,9 @@ public class UserController {
     }
 
     @PostMapping("/updateSetting")
-    public boolean updateSetting(@RequestBody Setting setting){
+    public boolean updateSetting(@RequestParam String username, @RequestParam String favourite_dining_place, @RequestParam String least_favourite_dining_place, @RequestParam String favourite_cuisine, @RequestParam String least_favourite_cuisine, @RequestParam String friends){
         try {
+            Setting setting = new Setting(username, favourite_dining_place, least_favourite_dining_place, favourite_cuisine, least_favourite_cuisine, friends);
             return userService.updateSetting(setting);
         }catch (Exception e){
             logger.error(e.getMessage());

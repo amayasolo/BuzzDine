@@ -147,6 +147,9 @@ public class RestaurantService {
     public boolean updateRating(String username, String restaurantName, int rating){
         UserInfo dbUserInfo = userInfoService.getOne(new QueryWrapper<UserInfo>().eq("username", username));
         Map<String, Integer> ratings = userService.getUserRating(dbUserInfo);
+        if (ratings == null){
+            ratings = new HashMap<>();
+        }
         ratings.put(restaurantName, rating);
         dbUserInfo.setUserRating(BuzzUtils.mapToString(ratings));
         return userInfoService.saveOrUpdate(dbUserInfo);

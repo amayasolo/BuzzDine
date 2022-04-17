@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/location_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
@@ -52,18 +52,82 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_width="339dp"
-        android:layout_height="229dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
+    <TextView
+        android:id="@+id/longitude_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:text="longitude"
+        android:textColor="#B3A36B"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
 
+    <EditText
+        android:id="@+id/longitude"
+        android:layout_width="298dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="64dp"
+        android:background="@drawable/rectangle"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/longitude_word" />
+
+    <TextView
+        android:id="@+id/latitude_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:ems="10"
+        android:text="latitude"
+        android:textColor="#B3A36B"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/longitude" />
+
+    <EditText
+        android:id="@+id/latitude"
+        android:layout_width="298dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="64dp"
+        android:background="@drawable/rectangle"
+        android:ems="10"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/latitude_word" />
+
+    <TextView
+        android:id="@+id/filter_word"
+        android:layout_width="299dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="64dp"
+        android:ems="10"
+        android:text="How do you want your recommendation base on?"
+        android:textColor="#B3A36B"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/latitude" />
+
+
+    <Spinner
+        android:id="@+id/filterType"
+        android:layout_width="291dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="64dp"
+        android:entries="@array/filter"
+        android:spinnerMode="dialog"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_word" />
+
     <Button
-        android:id="@+id/signup6"
+        android:id="@+id/location_btn"
         android:layout_width="218dp"
         android:layout_height="73dp"
         android:layout_marginStart="96dp"
@@ -73,5 +137,5 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map" />
+        app:layout_constraintTop_toBottomOf="@+id/filterType" />
 </androidx.constraintlayout.widget.ConstraintLayout>

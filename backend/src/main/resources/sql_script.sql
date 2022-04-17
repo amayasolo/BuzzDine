@@ -38,7 +38,7 @@ insert into restaurant(name, longitude, latitude, features) values
 ("Chick-fil-a",33.7848169,-84.4079716,"American"),
 ("McDonalds",33.7849256,-84.4070304,"American"),
 ("Cook Out",33.7853534,-84.4078129,"American"),
-("Krystal",33.7859355,-84.4078075,"American")
+("Krystal",33.7859355,-84.4078075,"American");
 
 create table user
 (

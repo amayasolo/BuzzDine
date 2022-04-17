@@ -1,8 +1,12 @@
 package com.gatech.buzzdine.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Setting {
     private String username;
     private String favourite_dining_place;

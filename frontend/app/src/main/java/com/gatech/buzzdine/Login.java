@@ -2,12 +2,17 @@ package com.gatech.buzzdine;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.SpannableString;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.gatech.buzzdine.MainActivity;
+import com.gatech.buzzdine.R;
+import com.gatech.buzzdine.SignUp;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -33,24 +38,19 @@ public class Login extends AppCompatActivity {
         Button back_btn = findViewById(R.id.login_back);
         username = findViewById(R.id.login_username);
         password = findViewById(R.id.login_password);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         login_btn.setOnClickListener(v -> {
             OkHttpClient client = new OkHttpClient();
-            HttpUrl loginUrl = new HttpUrl.Builder()
-                    .scheme("http")
-                    .host("172.26.32.1:8001/user/login")
-                    .addQueryParameter("username", String.valueOf(username))
-                    .addQueryParameter("password", String.valueOf(password))
-                    .build();
-            Request request = new Request.Builder().url(loginUrl).build();
+            Request request = new Request.Builder().url("http://"+getResources().getString(R.string.ip)+":8001/user/login?username="+username.getText().toString()+"&password="+password.getText().toString()).build();
             try {
                 Response response = client.newCall(request).execute();
                 String result = Objects.requireNonNull(response.body()).string();
-                System.out.println(result);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            setCurrentUser(new User(String.valueOf(username), "", String.valueOf(password)));
-            Intent intent = new Intent(this, SignUp.class);
+            setCurrentUser(new User(username.getText().toString(), "", password.getText().toString()));
+            Intent intent = new Intent(this, GetLocation.class);
             startActivity(intent);
         });
         back_btn.setOnClickListener(v -> {
