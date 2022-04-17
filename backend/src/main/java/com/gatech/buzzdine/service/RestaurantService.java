@@ -48,14 +48,14 @@ public class RestaurantService {
             case DISTANCE_CONTENT_BASED:
                 contentBasedRes = getContentBasedRes(user, restaurantInfoList);
                 distanceBasedRes = getDistanceBasedRes(restaurantInfoList, longitude, latitude);
-                Collections.copy(res, distanceBasedRes);
+                res = new ArrayList<>(distanceBasedRes);
                 Collections.sort(res, (a, b)->(distanceBasedRes.indexOf(a) + contentBasedRes.indexOf(a) - distanceBasedRes.indexOf(b) - contentBasedRes.indexOf(b)));
                 return res;
 
             case DISTANCE_COLLABORATIVE:
                 collaborateRes = getCollaborateRes(user, restaurantInfoList);
                 distanceBasedRes = getDistanceBasedRes(restaurantInfoList, longitude, latitude);
-                Collections.copy(res, distanceBasedRes);
+                res = new ArrayList<>(distanceBasedRes);
                 Collections.sort(res, (a, b)->(distanceBasedRes.indexOf(a) + collaborateRes.indexOf(a) - distanceBasedRes.indexOf(b) - collaborateRes.indexOf(b)));
                 return res;
 
@@ -63,7 +63,7 @@ public class RestaurantService {
                 contentBasedRes = getContentBasedRes(user, restaurantInfoList);
                 collaborateRes = getCollaborateRes(user, restaurantInfoList);
                 distanceBasedRes = getDistanceBasedRes(restaurantInfoList, longitude, latitude);
-                Collections.copy(res, distanceBasedRes);
+                res = new ArrayList<>(distanceBasedRes);
                 Collections.sort(res, (a, b)->(distanceBasedRes.indexOf(a) + contentBasedRes.indexOf(a) + collaborateRes.indexOf(a) - distanceBasedRes.indexOf(b) - contentBasedRes.indexOf(b) - collaborateRes.indexOf(b)));
                 return res;
         }
@@ -81,36 +81,40 @@ public class RestaurantService {
         List<UserInfo> allUser = userInfoService.list();
         Set<String> friends = new HashSet<>(getFriends(user));
         for(UserInfo other : allUser){
-            if(other == user) continue;
-            Map<String, Integer> otherPreferences = userService.getUserPreferences(user);
+            if(other.getUsername().equals(user.getUsername())) continue;
+            Map<String, Integer> otherPreferences = userService.getUserPreferences(other);
             int similarity = 0;
-            for(String p : userPreferences.keySet()){
-                similarity += Math.abs(userPreferences.get(p) - otherPreferences.get(p)) <= 1 ? 1 : 0;
+            if(!otherPreferences.isEmpty()){
+                for(String p : userPreferences.keySet()){
+                    similarity += Math.abs(userPreferences.get(p) - otherPreferences.getOrDefault(p, 0)) <= 1 ? 1 : 0;
+                }
             }
             List<RestaurantInfo> favorites = getFavorite(other, restaurantInfoList);
-            if(friends.contains(user.getUsername())) similarity *= 2;
+            if(friends.contains(user.getUsername())) similarity *= 1.2;
             for(RestaurantInfo f : favorites){
                 scoreMap.put(f, scoreMap.getOrDefault(f, 0d) + similarity);
             }
         }
-        List<RestaurantInfo> res = new ArrayList<>(scoreMap.keySet());
-        Collections.sort(res,(a, b)->(scoreMap.get(a) > scoreMap.get(b) ? 1: -1) );
+        List<RestaurantInfo> res = new ArrayList<>(restaurantInfoList);
+        Collections.sort(res,(a, b)->(scoreMap.getOrDefault(a, 0d) > scoreMap.getOrDefault(b, 0d) ? -1: 1) );
         return res;
     }
 
     private List<String> getFriends(UserInfo user) {
-        return JSONArray.parseArray(user.getFriends(), String.class);
+        String friends = user.getFriends();
+        return (null == friends || friends.isEmpty()) ? new ArrayList<>() : Arrays.asList(user.getFriends().split(","));
     }
 
     private List<RestaurantInfo> getFavorite(UserInfo user, List<RestaurantInfo> restaurantInfoLis) {
         List<RestaurantInfo> res = new ArrayList<>();
         Map<String, Integer> ratings = userService.getUserRating(user);
+        if(ratings.isEmpty()) return res;
         int max = Integer.MIN_VALUE;
         for(String r : ratings.keySet()){
             max = Math.max(max, ratings.get(r));
         }
         for(RestaurantInfo r : restaurantInfoLis){
-            if(ratings.getOrDefault(r.getId(), 0) == max) res.add(r);
+            if(ratings.getOrDefault(r.getName(), 0) == max) res.add(r);
         }
         return  res;
     }
@@ -120,7 +124,7 @@ public class RestaurantService {
         Map<String, Integer> userRating = userService.getUserRating(user);
         Map<String, Integer> userPreferences = userService.getUserPreferences(user);
         for(RestaurantInfo restaurant : restaurantInfoList){
-            Set<String> features = new HashSet<>(JSONArray.parseArray(restaurant.getFeatures(), String.class));
+            Set<String> features = new HashSet<>(Arrays.asList(restaurant.getFeatures().split(",")));
             Double tmp = 0d;
             for(String f : features){
                 tmp += userPreferences.getOrDefault(f, 0);
@@ -130,7 +134,7 @@ public class RestaurantService {
         }
 
         List<RestaurantInfo> res = new ArrayList<>(scoreMap.keySet());
-        Collections.sort(res, (a, b)->(scoreMap.get(a) > scoreMap.get(b) ? 1: -1) );
+        Collections.sort(res, (a, b)->(scoreMap.get(a) > scoreMap.get(b) ? -1: 1) );
         return res;
     }
 
@@ -145,6 +149,6 @@ public class RestaurantService {
         Map<String, Integer> ratings = userService.getUserRating(dbUserInfo);
         ratings.put(restaurantName, rating);
         dbUserInfo.setUserRating(BuzzUtils.mapToString(ratings));
-        return userInfoService.save(dbUserInfo);
+        return userInfoService.saveOrUpdate(dbUserInfo);
     }
 }

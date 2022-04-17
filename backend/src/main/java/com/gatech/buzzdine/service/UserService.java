@@ -37,19 +37,23 @@ public class UserService {
     }
 
     public Setting getSetting(String username){
-        UserInfo dbUserInfo = userInfoService.getOne(new QueryWrapper<UserInfo>().eq("username", username));
+        UserInfo dbUserInfo = userInfoService.getOne(new QueryWrapper<UserInfo>().eq("username", username));// error occurs when multiple users with same name
         Map<String, Integer> userRating = getUserRating(dbUserInfo);
         Map<String, Integer> userPreferences = getUserPreferences(dbUserInfo);
         List<String> ratings = new ArrayList<>(userRating.keySet());
-        Collections.sort(ratings, (a, b)->(userRating.get(b) - userRating.get(a)));
         List<String> preferences = new ArrayList<>(userPreferences.keySet());
-        Collections.sort(preferences, (a, b)->(userPreferences.get(b) - userPreferences.get(a)));
         Setting res = new Setting();
         res.setUsername(dbUserInfo.getUsername());
-        res.setFavourite_dining_place(ratings.get(0));
-        res.setLeast_favourite_cuisine(ratings.get(ratings.size() - 1));
-        res.setFavourite_cuisine(preferences.get(0));
-        res.setLeast_favourite_cuisine(preferences.get(preferences.size() - 1));
+        if(!ratings.isEmpty()){
+            Collections.sort(ratings, (a, b)->(userRating.get(b) - userRating.get(a)));
+            res.setFavourite_dining_place(ratings.get(0));
+            res.setLeast_favourite_dining_place(ratings.get(ratings.size() - 1));
+        }
+        if(!preferences.isEmpty()){
+            Collections.sort(preferences, (a, b)->(userPreferences.get(b) - userPreferences.get(a)));
+            res.setFavourite_cuisine(preferences.get(0));
+            res.setLeast_favourite_cuisine(preferences.get(preferences.size() - 1));
+        }
         res.setFriends(dbUserInfo.getFriends());
         return res;
     }
@@ -59,7 +63,7 @@ public class UserService {
         dbUserInfo.setFriends(setting.getFriends());
         dbUserInfo.setUserRating(updateRating(dbUserInfo, setting.getFavourite_dining_place(), setting.getLeast_favourite_dining_place()));
         dbUserInfo.setPreferences(updatePreference(dbUserInfo, setting.getFavourite_cuisine(), setting.getLeast_favourite_cuisine()));
-        return userInfoService.save(dbUserInfo);
+        return userInfoService.saveOrUpdate(dbUserInfo);
     }
 
     private String updatePreference(UserInfo dbUserInfo, String favourite_cuisine, String least_favourite_cuisine) {
@@ -86,5 +90,10 @@ public class UserService {
 
     public Map<String, Integer> getUserRating(UserInfo user) {
         return BuzzUtils.stringToMap(user.getUserRating());
+    }
+
+    public List<String> getFriends(UserInfo user) {
+        String friends = user.getFriends();
+        return (null == friends || friends.isEmpty()) ? new ArrayList<>() : Arrays.asList(user.getFriends().split(","));
     }
 }

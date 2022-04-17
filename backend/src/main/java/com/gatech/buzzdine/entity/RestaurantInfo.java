@@ -8,8 +8,8 @@ import lombok.Data;
 public class RestaurantInfo {
     private int id;
     private String name;
-    private long longitude;
-    private long latitude;
+    private double longitude;
+    private double latitude;
     // Cuisine Feature: American Barbecue Chinese French Hamburger Indian Italian Japanese Mexican Pizza Seafood Steak Sushi Thai}
     //["American", "Chinese"]
     private String features;
