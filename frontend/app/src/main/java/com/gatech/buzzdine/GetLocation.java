@@ -28,7 +28,7 @@ public class GetLocation extends AppCompatActivity {
             Intent intent = new Intent(this, Top5.class);
             intent.putExtra("longitude", longitude.getText().toString());
             intent.putExtra("latitude", latitude.getText().toString());
-            intent.putExtra("filter", String.valueOf(FilterType.getFilter(filter.toString()).getIndex()));
+            intent.putExtra("filter", String.valueOf(FilterType.getFilter(filter.getSelectedItem().toString()).getIndex()));
             startActivity(intent);
         });
         location_back.setOnClickListener(v -> {
