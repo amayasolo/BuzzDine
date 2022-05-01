@@ -9,6 +9,7 @@ import com.gatech.buzzdine.storage.service.RestaurantInfoService;
 import com.gatech.buzzdine.storage.service.UserInfoService;
 import com.gatech.buzzdine.utils.BuzzUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -144,7 +145,8 @@ public class RestaurantService {
         return dis1 * dis1 + dis2 * dis2;
     }
 
-    public boolean updateRating(String username, String restaurantName, int rating){
+    @Async("asyncServiceExecutor")
+    public void updateRating(String username, String restaurantName, int rating){
         UserInfo dbUserInfo = userInfoService.getOne(new QueryWrapper<UserInfo>().eq("username", username));
         Map<String, Integer> ratings = userService.getUserRating(dbUserInfo);
         if (ratings == null){
@@ -152,6 +154,6 @@ public class RestaurantService {
         }
         ratings.put(restaurantName, rating);
         dbUserInfo.setUserRating(BuzzUtils.mapToString(ratings));
-        return userInfoService.saveOrUpdate(dbUserInfo);
+        userInfoService.saveOrUpdate(dbUserInfo);
     }
 }

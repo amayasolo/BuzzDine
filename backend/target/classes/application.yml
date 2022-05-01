@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 8002
 
 
 spring:
@@ -10,6 +10,11 @@ spring:
     password: 123456
     url: jdbc:mysql://localhost:3306/buzzdine?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8001
+        port: 8719
 
 mybatis-plus:
   configuration:
